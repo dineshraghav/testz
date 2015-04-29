@@ -71,6 +71,22 @@ class Users extends InterfaceController {
 		$data['password_confirmation'] = null;
 		$this->load_template('change_password_form', $data);
 	}
+        public function prepare_insert() {
+		$data = array();
+		$data['action'] = base_url() . 'users/insert/';
+		$data['id'] = null;
+		$this->load->model('Users_model', null, true);
+		$users_list = $this->Users_model->get_all_users();
+		foreach ($users_list as $user) {
+			$users[$user->id] = $user->url;
+		}
+		$data['users'] = (count($users_list)>0) ? $users : array(''  => '<< nenhum >>');
+		$data['firstname'] = null;
+		$data['lastname'] = null;
+		$data['emailid'] = null;
+                $data['type'] = null;
+		$this->load_template('users_reg', $data);
+	}
 
 }
 /* End of file users.php */

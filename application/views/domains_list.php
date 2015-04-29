@@ -15,8 +15,8 @@
 				<table border="1">					
 				<thead>
 					<tr>
-						<th>Url do dom&iacute;nio</th>
-						<th>Subdom&iacute;nio</th>
+						<th>Domain URL</th>
+						<th>Sub Domain</th>
 						<th>&nbsp;</th>
 						<th>&nbsp;</th>
 					</tr>		

@@ -27,15 +27,20 @@ class Login extends InterfaceController {
 			$password = hash('sha256', $this->input->post('password'));
 			
 			$this->load->model('Users_model', null, true);
-			$obj = $this->Users_model->get_user_by_login($login, array('id', 'login', 'password', 'last_access'));
+			$obj = $this->Users_model->get_user_by_login($login, array('id', 'login', 'password', 'last_access','type','firstname','lastname','emailid'));
 			
 			if ((! empty($obj)) && ($password == $obj->password)) {
 				$this->session->set_userdata('userId', $obj->id);
 				$this->session->set_userdata('userLogin', $obj->login);
+                                $this->session->set_userdata('type', $obj->type);
+                                 $this->session->set_userdata('firstname', $obj->firstname);
+                                  $this->session->set_userdata('lastname', $obj->lastname);
+                                   $this->session->set_userdata('emailid', $obj->emailid);
 				$dataLastAccess = $this->prepare_last_login_date($obj->last_access);
 				$this->session->set_userdata('userLastAccess', $dataLastAccess);
 				$this->write_new_access($obj->id);
 				return true;
+                                
 			}
 		}
 

@@ -10,6 +10,7 @@ class Home extends InterfaceController {
 
 	public function index() {
 		$this->load_template('home');
+               // print_r($this-session);
 	}
 
 }
